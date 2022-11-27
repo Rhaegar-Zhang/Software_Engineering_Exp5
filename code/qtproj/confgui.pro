@@ -9,13 +9,17 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    ../src/confgui.cpp \
+    ../src/main.cpp \
     main.cpp \
     confgui.cpp
 
 HEADERS += \
+    ../h/confgui.h \
     confgui.h
 
 FORMS += \
+    ../qtui/confgui.ui \
     confgui.ui
 
 # Default rules for deployment.

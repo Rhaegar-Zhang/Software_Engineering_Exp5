@@ -1,4 +1,4 @@
-#include "confgui.h"
+#include "../h/confgui.h"
 
 #include <QApplication>
 
