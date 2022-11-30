@@ -4,7 +4,6 @@
 #include <vector>
 #include <string>
 
-
 //The struct represents the common statements in two files.
 struct CommonStmt{
     //One common statement in file1 and file2.
@@ -27,6 +26,9 @@ class CodeDiff{
     //All statements in file2.
     std::vector<std::string> file2;
 public:
+    //Initialize the class CodeDiff
+    CodeDiff(std::vector<std::string>& _file1, std::vector<std::string>& _file2);
+
     /*
     * Find the common statements in two files.
     * The common statements are stored in array stmt_lcs.

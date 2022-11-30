@@ -21,7 +21,7 @@ public:
     * The keys of this map represent the folders' path.
     * The values of each key represents the equal and inequal pairs in this folder.
     */
-    std::unordered_map<std::string, DirFile*>* read_output();
+    std::unordered_map<std::string, DirFile*> read_output();
 private:
     /*
     * Variable to store equal pairs and inequal pairs.

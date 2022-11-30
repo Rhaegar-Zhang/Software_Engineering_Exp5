@@ -1,20 +1,25 @@
 #include "../h/recommend.h"
 
-bool Compare(PairsOfFile* a, PairsOfFile* b){
-    return a->pair_num > b->pair_num;
+bool operator > (const PairsOfFile& a, const PairsOfFile& b){
+    return a.pair_num > b.pair_num;
+}
+
+bool compare(PairsOfFile* a, PairsOfFile* b){
+    return (*a) > (*b);
 }
 
 //Get each file's equal pairs and inequal pairs in this folder.
 Recommend::Recommend(std::unordered_map<std::string, std::unordered_set<std::string> >& _equal_pairs, std::unordered_map<std::string, std::unordered_set<std::string> >& _inequal_pairs){
     this->equal_pairs = _equal_pairs;
     this->inequal_pairs = _inequal_pairs;
+    get_file_pair_num();
 }
 
 //Recommend the first program pair that need to judge by user.
 std::pair<std::string, std::string> Recommend::pair_recommend(){
-    if((*(file_pair_num.begin()))->pair_num == 0)
+    while(!file_pair_num.empty() && (*(file_pair_num.begin()))->pair_num == 0)
         file_pair_num.erase(file_pair_num.begin());
-    if(file_pair_num.begin() == file_pair_num.end())
+    if(file_pair_num.empty())
         return std::pair<std::string, std::string>("", "");
     std::string file_name = (*(file_pair_num.begin()))->file_name, file2_name = "";
     std::unordered_map<std::string, std::unordered_set<std::string> >::iterator i = equal_pairs.find(file_name);
@@ -48,7 +53,7 @@ void Recommend::get_file_pair_num(){
         add_file(i->first, i->second.size());
     for(auto i = inequal_pairs.begin(); i != inequal_pairs.end(); ++i)
         add_file(i->first, i->second.size());
-    std::sort(file_pair_num.begin(), file_pair_num.end(), Compare);
+    sort(file_pair_num.begin(), file_pair_num.end(), compare);
 }
 
 

@@ -6,6 +6,10 @@
 #include <unordered_set>
 #include <unordered_map>
 #include <QMainWindow>
+#include "../h/codediff.h"
+#include "../h/readoutput.h"
+#include "../h/recommend.h"
+#include "../h/fileshow.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class ConfGui; }
@@ -19,15 +23,6 @@ public:
     ConfGui(QWidget *parent = nullptr);
     ~ConfGui();
 
-    //Show the contents of the two programs to help user judge the equality og these two programs manually.
-    void show_program_pair();
-
-    //Update the judge result when user click equal button.
-    void click_equal_btn();
-
-    //Update the judge result when user click inequal button.
-    void click_inequal_btn();
-
     /*
      * Decrease the amount of program pairs need to judge by user.
      * i.e.
@@ -36,28 +31,41 @@ public:
     */
     void res_update(std::string folder_name, std::string file1, std::string file2, bool judge_res);
 
+    //Function to run this file.
+    void show_widget();
+
+    //Save the manual result to files.
+    void save_res();
+
 private:
     Ui::ConfGui *ui;
 
-    //Equal result of manual judgment.
-    std::unordered_map<std::string, std::unordered_map<std::string, std::unordered_set<std::string> > > equal_res;
+    //Result of machine judgment.
+    std::unordered_map<std::string, DirFile*> mach_res;
 
-    //Inequal result of manual judgment.
-    std::unordered_map<std::string, std::unordered_map<std::string, std::unordered_set<std::string> > > inequal_res;
-
-    /*
-     * The recommended program pair need to shown.
-     * The pair has the two paograms' name and the folder name to which they belong.
-     */
-    std::pair<std::string, std::string> file_pair;
-
-    //The contents of the first program's source code.
-    std::vector<std::string> file1;
-
-    //The contents of the second program's source code.
-    std::vector<std::string> file2;
+    //Result of manual judgment.
+    std::unordered_map<std::string, DirFile*> manual_res;
 
     //Read the source code of the two files need to shown.
-    void read_src_file();
+    void read_src_file(std::string path, std::vector<std::string>& file);
+
+    //Get the path of input folder.
+    std::string get_input_path();
+
+    //If both contents of a pair is not empty then return true, otherwise return false.
+    bool not_empty_pair(std::pair<std::string, std::string> p);
+
+    /*
+     * Find the folder in manual judging result.
+     * If the folder doesn't exit then add one new folder into manual judging rersult.
+     * Return the iterator of the folder's position.
+     */
+    std::unordered_map<std::string, DirFile*>::iterator find_folder(std::string folder_name);
+
+    //Add one new equal or inequal program pair.
+    void add_new_pair(std::string folder_name, std::string file1, std::string file2, bool judge_res);
+
+    //Add one file to another file's equal file set or inequal file set.
+    void add_file(std::string file1, std::string file2, std::unordered_map<std::string, std::unordered_set<std::string> >& target);
 };
 #endif // CONFGUI_H

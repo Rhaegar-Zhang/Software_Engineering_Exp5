@@ -6,61 +6,14 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>251</width>
+    <height>271</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>ConfGui</string>
   </property>
-  <widget class="QWidget" name="centralwidget">
-   <widget class="QPushButton" name="EqualBtn">
-    <property name="geometry">
-     <rect>
-      <x>80</x>
-      <y>550</y>
-      <width>89</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>等价</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="InequalBtn">
-    <property name="geometry">
-     <rect>
-      <x>600</x>
-      <y>550</y>
-      <width>89</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>不等价</string>
-    </property>
-   </widget>
-   <widget class="QTextBrowser" name="FirstProg">
-    <property name="geometry">
-     <rect>
-      <x>6</x>
-      <y>10</y>
-      <width>390</width>
-      <height>531</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextBrowser" name="SecondProg">
-    <property name="geometry">
-     <rect>
-      <x>406</x>
-      <y>10</y>
-      <width>390</width>
-      <height>531</height>
-     </rect>
-    </property>
-   </widget>
-  </widget>
+  <widget class="QWidget" name="centralwidget"/>
  </widget>
  <resources/>
  <connections/>
